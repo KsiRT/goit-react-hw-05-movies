@@ -33,6 +33,31 @@ export const fetchMovieById = async id => {
   };
 };
 
+export async function fetchReviews(id) {
+  const { data } = await axios.get(`movie/${id}/reviews`, {
+    params: {
+      api_key: ACCESS_KEY,
+    },
+  });
+
+  return data?.results;
+}
+
+export const fetchCast = async id => {
+  const { data } = await axios.get(`movie/${id}/credits`, {
+    params: {
+      api_key: ACCESS_KEY,
+    },
+  });
+  console.log(data);
+  return data?.cast.map(({ profile_path, name, character, id }) => ({
+    id,
+    photo: profile_path ? IMG_BASE_URL + profile_path : null,
+    name,
+    character,
+  }));
+};
+
 function extractMoviesData(movies) {
   const result = movies.map(({ id, title, poster_path }) => ({
     id,
