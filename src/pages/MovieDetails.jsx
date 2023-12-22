@@ -30,7 +30,9 @@ const MovieDetails = () => {
         <button onClick={handleGoBack}>Go back</button>
         <h2>{movie.title}</h2>
         <p>Rating: {movie.score}</p>
-        <img src={movie.poster} alt="Movie poster" width={250} />
+
+        <img src={movie.poster} alt={`${movie.title} poster`} width={250} />
+
         <p>Overview: {movie.overview}</p>
       </div>
       <hr />

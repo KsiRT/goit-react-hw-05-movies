@@ -58,12 +58,22 @@ export const fetchCast = async id => {
   }));
 };
 
+export async function fetchMoviesByQuery(query) {
+  const { data } = await axios.get('search/movie', {
+    params: {
+      api_key: ACCESS_KEY,
+      query: query,
+    },
+  });
+  return extractMoviesData(data.results);
+}
+
 function extractMoviesData(movies) {
   const result = movies.map(({ id, title, poster_path }) => ({
     id,
     title,
     poster: poster_path ? IMG_BASE_URL + poster_path : null,
   }));
-  console.log(result);
+  // console.log(result);
   return result;
 }
