@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchReviews } from 'services/api';
+import { NoReviews, Review, ReviewsList } from './ReviewsStyled';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   useEffect(() => {
     fetchReviews(movieId).then(res => {
-      // console.log(res);
       setReviews(res);
     });
   }, [movieId]);
   return (
     <>
-      {
-        <ul>
+      {reviews.length ? (
+        <ReviewsList>
           {reviews.map(rev => (
-            <li key={rev.id}>
+            <Review key={rev.id}>
               <p>{rev.author}</p>
               <span>{rev.content}</span>
-            </li>
+              <hr />
+            </Review>
           ))}
-        </ul>
-      }
+        </ReviewsList>
+      ) : (
+        <NoReviews>There is no reviews on this movie yet</NoReviews>
+      )}
     </>
   );
 };

@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchCast } from 'services/api';
 import { Actor, CastList, ImageWrapper } from './CastStyled';
-import { RxAvatar } from 'react-icons/rx';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
+  const defaultCastImg =
+    'https://community.adobe.com/legacyfs/online/avatars/a829412_stormtrooper_001.png';
 
   useEffect(() => {
     fetchCast(movieId)
       .then(res => setCast(res))
       .catch(err => console.log(err.message));
   }, [movieId]);
-  console.log(cast);
   return (
     <>
       {cast.length > 0 ? (
@@ -24,7 +24,7 @@ const Cast = () => {
                 {photo ? (
                   <img src={photo} alt={name} />
                 ) : (
-                  <RxAvatar size={100} color="#a1a1a1" />
+                  <img src={defaultCastImg} alt="No avatar" />
                 )}
               </ImageWrapper>
               <h3>{name}</h3>
@@ -32,8 +32,9 @@ const Cast = () => {
             </Actor>
           ))}
         </CastList>
-      ) : null}
-      {cast ? <p>Sorry, we don't have information about cast</p> : null}
+      ) : (
+        <p>Sorry, we don't have information about cast</p>
+      )}
     </>
   );
 };

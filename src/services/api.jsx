@@ -49,7 +49,6 @@ export const fetchCast = async id => {
       api_key: ACCESS_KEY,
     },
   });
-  console.log(data);
   return data?.cast.map(({ profile_path, name, character, id }) => ({
     id,
     photo: profile_path ? IMG_BASE_URL + profile_path : null,
@@ -58,7 +57,7 @@ export const fetchCast = async id => {
   }));
 };
 
-export async function fetchMoviesByQuery(query) {
+export const fetchMoviesByQuery = async query => {
   const { data } = await axios.get('search/movie', {
     params: {
       api_key: ACCESS_KEY,
@@ -66,7 +65,7 @@ export async function fetchMoviesByQuery(query) {
     },
   });
   return extractMoviesData(data.results);
-}
+};
 
 function extractMoviesData(movies) {
   const result = movies.map(({ id, title, poster_path }) => ({

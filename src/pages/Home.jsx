@@ -1,19 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { fetchPopMovies } from 'services/api';
+import { MovieItem, MoviesList, Title } from './SharedStyles';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
   useEffect(() => {
     fetchPopMovies().then(res => setMovies(res));
   }, []);
+
+  const location = useLocation();
+
   return (
     <>
-      <h1>Home page</h1>;
-      <ul>
+      <Title>Popular today</Title>
+      <MoviesList>
         {movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`movies/${movie.id.toString()}`}>
+          <MovieItem key={movie.id}>
+            <Link
+              state={{ from: location }}
+              to={`movies/${movie.id.toString()}`}
+            >
               <img
                 src={movie.poster}
                 alt={`${movie.title} poster`}
@@ -21,9 +28,9 @@ const Home = () => {
               />
               <p>{movie.title}</p>
             </Link>
-          </li>
+          </MovieItem>
         ))}
-      </ul>
+      </MoviesList>
     </>
   );
 };
