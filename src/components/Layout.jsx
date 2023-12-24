@@ -1,4 +1,5 @@
-import React from 'react';
+import { Title } from 'pages/SharedStyles';
+import React, { Suspense } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -12,7 +13,9 @@ const Layout = () => {
         </nav>
       </StyledHeader>
       <div>
-        <Outlet />
+        <Suspense fallback={<Title> Loading...</Title>}>
+          <Outlet />
+        </Suspense>
       </div>
     </>
   );

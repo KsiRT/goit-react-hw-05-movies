@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState } from 'react';
 import {
   Link,
   Outlet,
@@ -49,7 +49,7 @@ const MovieDetails = () => {
         )}
         <div>
           <h2>{movie.title}</h2>
-          <p>Rating: {movie.score}</p>
+          <p>Rating: {movie.score}%</p>
           <p>Overview: {movie.overview}</p>
         </div>
       </Wrapper>
@@ -59,7 +59,9 @@ const MovieDetails = () => {
         <Link to="reviews">Reviews</Link>
       </Links>
       <StyledOutlet>
-        <Outlet />
+        <Suspense fallback={<Title> Loading...</Title>}>
+          <Outlet />
+        </Suspense>
       </StyledOutlet>
     </Container>
   );

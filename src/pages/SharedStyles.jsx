@@ -46,6 +46,7 @@ export const MoviesList = styled.ul`
 
 export const MovieItem = styled.li`
   width: 250px;
+  min-height: 400px;
   border: 2px solid #ececec;
   border-radius: 12px;
   display: flex;
