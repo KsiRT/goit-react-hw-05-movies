@@ -42,11 +42,12 @@ const MovieDetails = () => {
     <Container>
       <DefaultBtn onClick={handleGoBack}>Go back</DefaultBtn>
       <Wrapper>
-        {movie.poster ? (
-          <img src={movie.poster} alt={`${movie.title} poster`} width={250} />
-        ) : (
-          <img src={defaultMovieImg} alt="No poster" width={250} />
-        )}
+        <img
+          src={movie.poster ? movie.poster : defaultMovieImg}
+          alt={`${movie.title} poster`}
+          width={250}
+        />
+
         <div>
           <h2>{movie.title}</h2>
           <p>Rating: {movie.score}%</p>

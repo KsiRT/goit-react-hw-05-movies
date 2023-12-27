@@ -11,60 +11,6 @@ export const Title = styled.h1`
   margin: 20px;
 `;
 
-export const SearchInput = styled.input`
-  height: 25px;
-  font-size: 20px;
-  outline: none;
-  border-radius: 8px;
-  padding: 4px 8px;
-  background-color: #888;
-  color: #ececec;
-  &::placeholder {
-    color: #ececec;
-  }
-`;
-
-export const StyledSearch = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 0;
-  gap: 15px;
-`;
-
-export const MoviesList = styled.ul`
-  margin: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 15px;
-  padding: 40px;
-`;
-
-export const MovieItem = styled.li`
-  width: 250px;
-  min-height: 400px;
-  border: 2px solid #ececec;
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-
-  a {
-    max-width: 100%;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #ececec;
-    text-decoration: none;
-    text-align: center;
-  }
-`;
-
 export const DefaultBtn = styled.button`
   display: inline-block;
   outline: 0;

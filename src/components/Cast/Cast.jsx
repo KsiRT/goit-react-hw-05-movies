@@ -21,11 +21,7 @@ const Cast = () => {
           {cast.map(({ name, character, photo, id }) => (
             <Actor key={id}>
               <ImageWrapper>
-                {photo ? (
-                  <img src={photo} alt={name} />
-                ) : (
-                  <img src={defaultCastImg} alt="No avatar" />
-                )}
+                <img src={photo ? photo : defaultCastImg} alt={name} />
               </ImageWrapper>
               <h3>{name}</h3>
               <p>({character})</p>

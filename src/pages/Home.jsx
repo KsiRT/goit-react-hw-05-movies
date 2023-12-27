@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { fetchPopMovies } from 'services/api';
-import { MovieItem, MoviesList, Title } from './SharedStyles';
+import { Title } from './SharedStyles';
+import MovieList from 'components/MovieList/MovieList';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -14,23 +15,7 @@ const Home = () => {
   return (
     <>
       <Title>Popular today</Title>
-      <MoviesList>
-        {movies.map(movie => (
-          <MovieItem key={movie.id}>
-            <Link
-              state={{ from: location }}
-              to={`movies/${movie.id.toString()}`}
-            >
-              <img
-                src={movie.poster}
-                alt={`${movie.title} poster`}
-                width={200}
-              />
-              <p>{movie.title}</p>
-            </Link>
-          </MovieItem>
-        ))}
-      </MoviesList>
+      <MovieList movies={movies} location={location} />
     </>
   );
 };
