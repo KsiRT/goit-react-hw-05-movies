@@ -2,13 +2,15 @@ import { DefaultBtn, Title } from 'pages/SharedStyles';
 import React, { useEffect } from 'react';
 import { SearchInput, StyledSearchForm } from './SearchFormStyled';
 import { fetchMoviesByQuery } from 'services/api';
+import { useSearchParams } from 'react-router-dom';
 
-const SearchForm = ({ setParams, searchParams, setMovies }) => {
+const SearchForm = ({ setMovies }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const handleFormSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
     const value = form.elements.query.value;
-    setParams({ query: value });
+    setSearchParams({ query: value });
   };
   const query = searchParams.get('query') || '';
 
