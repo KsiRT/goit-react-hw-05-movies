@@ -10,7 +10,9 @@ const SearchForm = ({ setMovies }) => {
     e.preventDefault();
     const form = e.currentTarget;
     const value = form.elements.query.value;
-    setSearchParams({ query: value });
+    if (value !== '') {
+      setSearchParams({ query: value });
+    }
   };
   const query = searchParams.get('query') || '';
 
